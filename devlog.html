@@ -1,11 +1,149 @@
-<HTML>
-<HEAD>
-<META NAME="GENERATOR" Content="Microsoft Visual Studio">
-<TITLE></TITLE>
-</HEAD>
-<BODY>
+﻿<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <title>Devlog - Sonoran Prowl Games</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="stylesheet" href="style.css">
+</head>
 
-</BODY>
-</HTML>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container navbar-inner">
+            <div class="logo-container">
+                <img src="assets/logo4.png" class="logo">
+                <span class="studio-name">SONORAN PROWL GAMES</span>
+            </div>
+
+            <div class="menu-toggle">☰</div>
+
+            <nav class="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="devlog.html">Devlog</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="about-hero">
+        <div class="container hero-content">
+            <h1>Devlog</h1>
+            <p>Follow the development journey of Sonoran Prowl Games. Each update highlights progress, challenges, and behind-the-scenes insights into the creation of bold, stylish game worlds.</p>
+        </div>
+    </section>
+
+    <!-- DEVLOG GRID -->
+    <section class="devlog">
+        <div class="container">
+            <h2>Latest Updates</h2>
+
+            <div class="devlog-grid">
+
+                <!-- DEVLOG 1 -->
+                <div class="devlog-card">
+                    <img src="assets/social2.jpg" alt="Devlog 1 Thumbnail" class="devlog-thumb">
+                    <h3>Devlog #1</h3>
+                    <p class="devlog-preview">This March, I’ll be focusing on getting Sonoran Prowl Games’ social media platforms up and running.</p>
+                    <p class="devlog-full">This March, I’ll be focusing on getting Sonoran Prowl Games’ social media platforms up and running to start sharing updates, development progress, and connecting with the community as development of Project Whiskers of War begins.</p>
+                    <button class="devlog-toggle">Read More ↓</button>
+                    <span>March 2026</span>
+                </div>
+
+                <!-- DEVLOG 2 -->
+                <div class="devlog-card">
+                    <img src="assets/wowbanner.jpg" alt="Devlog 2 Thumbnail" class="devlog-thumb">
+                    <h3>Devlog #2</h3>
+                    <p class="devlog-preview">Production of <em>Project Whiskers of War</em> officially begins!</p>
+                    <p class="devlog-full">Development on Project Whiskers of War has officially started. Current work focuses on establishing the core gameplay systems including character movement, camera controls, and the first playable prototype.</p>
+                    <button class="devlog-toggle">Read More ↓</button>
+                    <span>April 2026</span>
+                </div>
+
+                <!-- DEVLOG 3 -->
+                <div class="devlog-card">
+                    <img src="assets/comingsoon.jpg" alt="Devlog 3 Thumbnail" class="devlog-thumb">
+                    <h3>Devlog #3</h3>
+                    <p class="devlog-preview">First look at character movement in <em>Project Whiskers of War</em>.</p>
+                    <p class="devlog-full">This devlog showcases the early character movement system. The goal is making movement feel smooth, responsive, and satisfying while laying the groundwork for traversal mechanics.</p>
+                    <button class="devlog-toggle">Read More ↓</button>
+                    <span>Coming Soon</span>
+                </div>
+
+            </div>
+
+            <!-- LOAD MORE BUTTON -->
+            <div class="devlog-load-more">
+                <button id="loadMore">Load More Updates</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="cta-follow">
+        <div class="container cta-content">
+            <h2>Follow the Journey</h2>
+            <p>Stay up to date with development progress, sneak peeks, and devlogs by following our social media platforms.</p>
+            <div class="social-links">
+                <a href="#">TikTok</a>
+                <a href="#">YouTube</a>
+                <a href="#">X</a>
+                <a href="#">Instagram</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>© 2026 Sonoran Prowl Games. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        /* ================================= */
+        /* DEVLOG CARD TOGGLE */
+        /* ================================= */
+        const devlogButtons = document.querySelectorAll(".devlog-toggle");
+        devlogButtons.forEach(button => {
+            button.addEventListener("click", e => {
+                e.stopPropagation();
+                const card = button.closest(".devlog-card");
+                card.classList.toggle("active");
+                button.textContent = card.classList.contains("active") ? "Read Less ↑" : "Read More ↓";
+            });
+        });
+
+        /* ================================= */
+        /* DEVLOG LOAD MORE */
+        /* ================================= */
+        const loadMoreBtn = document.getElementById("loadMore");
+        if (loadMoreBtn) {
+            const allDevlogs = Array.from(document.querySelectorAll(".devlog-card"));
+            let devlogsToShow = 3;
+            allDevlogs.forEach((card, index) => {
+                if (index >= devlogsToShow) card.style.display = "none";
+            });
+            loadMoreBtn.addEventListener("click", () => {
+                devlogsToShow += 3;
+                allDevlogs.forEach((card, index) => {
+                    if (index < devlogsToShow) card.style.display = "block";
+                });
+                if (devlogsToShow >= allDevlogs.length) loadMoreBtn.style.display = "none";
+            });
+        }
+    </script>
+</body>
+</html>
