@@ -20,20 +20,29 @@ const navMenu = document.querySelector(".nav-menu");
 /* ================================= */
 
 let currentSlide = 0;
+let slideInterval = null;
+const slideDuration = 6000;
 
-
-function showSlide(index) {
+function showSlide(index)
+{
+    if (!slides.length) return;
     slides.forEach(slide => slide.classList.remove("active"));
     dots.forEach(dot => dot.classList.remove("active"));
 
     slides[index].classList.add("active");
-    dots[index].classList.add("active");
+
+    if (dots[index]) {
+        dots[index].classList.add("active");
+    }
+
 }
 
 
-function nextSlide() {
-    currentSlide++;
+function nextSlide()
+{
+    if (!slides.length) return;
 
+    currentSlide++;
     if (currentSlide >= slides.length) {
         currentSlide = 0;
     }
@@ -42,9 +51,11 @@ function nextSlide() {
 }
 
 
-function prevSlide() {
-    currentSlide--;
+function prevSlide()
+{
+    if (!slides.length) return;
 
+    currentSlide--;
     if (currentSlide < 0) {
         currentSlide = slides.length - 1;
     }
@@ -52,35 +63,51 @@ function prevSlide() {
     showSlide(currentSlide);
 }
 
+function startAutoSlide() {
+    stopAutoSlide();
+    if (slides.length > 1) {
+        slideInterval = setInterval(nextSlide, slideDuration);
+    }
+}
+
+function stopAutoSlide() {
+    if (slideInterval) {
+        clearInterval(slideInterval);
+        slideInterval = null;
+    }
+}
+
+function resetAutoSlide() {
+    startAutoSlide();
+}
 
 /* ================================= */
 /* SLIDER CONTROLS */
 /* ================================= */
 
 if (rightArrow) {
-    rightArrow.addEventListener("click", nextSlide);
+    rightArrow.addEventListener("click", () => {
+        nextSlide();
+        resetAutoSlide();
+    });
 }
 
 if (leftArrow) {
-    leftArrow.addEventListener("click", prevSlide);
+    leftArrow.addEventListener("click", () => {
+        prevSlide();
+        resetAutoSlide();
+    });
 }
-
-
-/* DOT NAVIGATION */
 
 dots.forEach((dot, index) => {
     dot.addEventListener("click", () => {
         currentSlide = index;
         showSlide(currentSlide);
+        resetAutoSlide();
     });
 });
 
-
-/* AUTO SLIDE */
-
-setInterval(nextSlide, 6000);
-
-
+startAutoSlide();
 
 /* ================================= */
 /* DEVLOG CARD EXPAND */

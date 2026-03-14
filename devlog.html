@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
@@ -48,11 +50,27 @@
                 <!-- DEVLOG 1 -->
                 <div class="devlog-card">
                     <img src="assets/social2.jpg" alt="Devlog 1 Thumbnail" class="devlog-thumb">
-                    <h3>Devlog #1</h3>
-                    <p class="devlog-preview">This March, I’ll be focusing on getting Sonoran Prowl Games’ social media platforms up and running.</p>
-                    <p class="devlog-full">This March, I’ll be focusing on getting Sonoran Prowl Games’ social media platforms up and running to start sharing updates, development progress, and connecting with the community as development of Project Whiskers of War begins.</p>
+
+                    <h3>Social Media Pages Are Now Live</h3>
+
+                    <p class="devlog-preview">
+                        Sonoran Prowl Games is now officially live across social media.
+                        You can now follow development updates, sneak peeks, and future
+                        announcements on YouTube, X, Instagram, and Facebook.
+                    </p>
+
+                    <div class="devlog-full">
+
+                        <p>
+                            Today's update also includes several bug fixes across the website.
+                            Navigation improvements, contact form functionality, and layout
+                            issues have been addressed to make the experience smoother.
+                        </p>
+
+
+                    </div>
                     <button class="devlog-toggle">Read More ↓</button>
-                    <span>March 2026</span>
+                    <span>14 March 2026</span>
                 </div>
 
                 <!-- DEVLOG 2 -->
@@ -88,13 +106,27 @@
     <!-- CALL TO ACTION -->
     <section class="cta-follow">
         <div class="container cta-content">
+
             <h2>Follow the Journey</h2>
+
             <p>Stay up to date with development progress, sneak peeks, and devlogs by following our social media platforms.</p>
+
             <div class="social-links">
-                <a href="#">TikTok</a>
-                <a href="#">YouTube</a>
-                <a href="#">X</a>
-                <a href="#">Instagram</a>
+                <a href="https://www.facebook.com/SonoranProwlGames" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="https://www.youtube.com/@SonoranProwlGames" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+                <a href="https://x.com/SonoranProwl" target="_blank" rel="noopener noreferrer" aria-label="X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+
+                <a href="https://www.instagram.com/sonoranprowlgames/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -106,44 +138,12 @@
             <div class="footer-links">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms</a>
-                <a href="#">Contact</a>
+                <a href="contact.html">Contact</a>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        /* ================================= */
-        /* DEVLOG CARD TOGGLE */
-        /* ================================= */
-        const devlogButtons = document.querySelectorAll(".devlog-toggle");
-        devlogButtons.forEach(button => {
-            button.addEventListener("click", e => {
-                e.stopPropagation();
-                const card = button.closest(".devlog-card");
-                card.classList.toggle("active");
-                button.textContent = card.classList.contains("active") ? "Read Less ↑" : "Read More ↓";
-            });
-        });
-
-        /* ================================= */
-        /* DEVLOG LOAD MORE */
-        /* ================================= */
-        const loadMoreBtn = document.getElementById("loadMore");
-        if (loadMoreBtn) {
-            const allDevlogs = Array.from(document.querySelectorAll(".devlog-card"));
-            let devlogsToShow = 3;
-            allDevlogs.forEach((card, index) => {
-                if (index >= devlogsToShow) card.style.display = "none";
-            });
-            loadMoreBtn.addEventListener("click", () => {
-                devlogsToShow += 3;
-                allDevlogs.forEach((card, index) => {
-                    if (index < devlogsToShow) card.style.display = "block";
-                });
-                if (devlogsToShow >= allDevlogs.length) loadMoreBtn.style.display = "none";
-            });
-        }
-    </script>
+    
 </body>
 </html>

@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
@@ -46,32 +48,44 @@
 
             <p>
                 Sonoran Prowl Games is currently a solo indie development studio based in Arizona.
-                If you have questions about development, collaboration opportunities, or just want
-                to follow the journey, feel free to reach out.
+                Use the form below to get in touch regarding development,
+                feedback, or general inquiries.
             </p>
 
-            <p>
-                Email: <strong>joshua@sonoranprowlgames.com</strong>
-            </p>
-
-            <br>
+            <br><br>
 
             <h2>Send a Message</h2>
 
-            <form class="contact-form">
 
-                <input type="text" placeholder="Your Name" required>
+            <div class="contact-card">
 
-                <input type="email" placeholder="Your Email" required>
+                <p id="form-success" style="display:none; color:#ff7a00; margin-bottom:20px;">
+                    Thanks — your message was sent successfully.
+                </p>
 
-                <textarea rows="6" placeholder="Your Message" required></textarea>
+                <form class="contact-form"
+                      action="https://formspree.io/f/xojklknp"
+                      method="POST"
+                      autocomplete="off">
 
-                <button type="submit">Send Message</button>
+                    <input type="text" name="name" placeholder="Your Name" required>
 
-            </form>
+                    <input type="email" name="email" placeholder="Your Email" required>
 
+                    <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+
+                    <input type="hidden" name="_subject" value="Website Contact – Sonoran Prowl Games">
+
+                    <input type="hidden" name="_next" value="https://sonoranprowlgames.com/contact.html?sent=1">
+
+                    <button type="submit" id="submitBtn">Send Message</button>
+
+                </form>
+
+            </div>
         </div>
-    </section>
+
+</section>
 
     <!-- CALL TO ACTION -->
     <section class="cta-follow">
@@ -80,10 +94,21 @@
             <p>Stay up to date with development progress, sneak peeks, and devlogs by following our social media platforms.</p>
 
             <div class="social-links">
-                <a href="#">TikTok</a>
-                <a href="#">YouTube</a>
-                <a href="#">X</a>
-                <a href="#">Instagram</a>
+                <a href="https://www.facebook.com/SonoranProwlGames" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="https://www.youtube.com/@SonoranProwlGames" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+
+                <a href="https://x.com/SonoranProwl" target="_blank" rel="noopener noreferrer" aria-label="X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+
+                <a href="https://www.instagram.com/sonoranprowlgames/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -103,5 +128,22 @@
 
     <script src="script.js"></script>
 
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("sent") === "1") {
+            const success = document.getElementById("form-success");
+            if (success) success.style.display = "block";
+        }
+
+        const form = document.querySelector(".contact-form");
+        const btn = document.getElementById("submitBtn");
+
+        if (form) {
+            form.addEventListener("submit", () => {
+                btn.textContent = "Sending...";
+                btn.disabled = true;
+            });
+        }
+    </script>
 </body>
 </html>
